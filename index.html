@@ -1,0 +1,2330 @@
+<html>
+  <body>
+    <p>
+      
+import java.util.Scanner;
+
+class DetectiveMystery {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        // DETECTIVE MYSTERY SIMULATOR
+
+        // DECLARE VARIABLES
+        String name = "";
+        int level = 0;
+        int[] sol = {1, 2, 2, 3, 3};
+        String Plevel = "";
+        String[] levels = {"Novice", "Apprentice", "Intermediate", "Expert", "Master"};
+        int response = 0;
+        boolean case2Solved = false;
+        boolean case3Solved = false;
+        boolean case4Solved = false;
+        boolean case5Solved = false;
+        String[] cases = {
+
+                """
+    CASE 1: THE MISSING TROPHY
+
+    SITUATION:
+    The school's championship trophy disappears from a locked display
+    cabinet between 4:00 PM and 5:00 PM.
+
+    SUSPECTS:
+
+    Arjun:
+    Says he left school at 4:10 PM.
+
+    Kabir:
+    Says he stayed in the sports room until 5:00 PM.
+
+    Dev:
+    Says he was in the library from 4:00 PM to 5:00 PM.
+
+    EVIDENCE:
+
+    1. The librarian confirms Dev was in the library.
+    2. The sports room was locked at 4:30 PM.
+    3. A security camera shows someone carrying a large bag leaving
+       at 4:20 PM.
+    4. Arjun was carrying a large sports bag.
+    """,
+
+                """
+    CASE 2: THE LOCKED OFFICE
+
+    SITUATION:
+    A teacher's laptop disappears from a locked office.
+
+    The office was locked at 5:00 PM and the missing laptop was
+    discovered at 6:00 PM.
+
+    SUSPECTS:
+
+    Riya:
+    Says she left at 5:10 PM.
+
+    Sameer:
+    Says he left at 5:30 PM.
+
+    Vikram:
+    Says he never entered the office.
+
+    """,
+
+                """
+    CASE 3: THE VANISHING NECKLACE
+    The basic mystery:
+    
+    A family is having a dinner party at an old house.
+    
+    At 8:00 PM, Maya places a valuable necklace inside a glass display box in the dining room.
+    
+    At 8:15 PM, the necklace is gone.
+    
+    The strange part?
+    
+    Nobody saw anyone take it.
+    
+    There are three suspects, but everyone's story seems believable at first.
+    
+    Suspects
+    
+    Maya
+    
+    Daughter of the owner
+    Says she was preparing food in the kitchen
+    Claims she never entered the dining room after 8:00
+    
+    Rahul
+    
+    Family friend
+    Says he was sitting in the living room
+    Claims he only entered the dining room once, before dinner
+    
+    Anika
+    
+    Housekeeper
+    Says she was cleaning the dining room
+    Claims she left the room at 8:05
+
+    
+    """,
+
+                """
+    CASE 5: THE MIDNIGHT TRAIN
+
+    SITUATION:
+    A valuable package disappears from a locked train compartment
+    during a journey.
+
+    The train leaves at 11:00 PM.
+
+    The package is confirmed to be inside at 11:20 PM.
+    At 11:50 PM, it is missing.
+
+    SUSPECTS:
+
+    Aarav:
+    Passenger in compartment 1.
+    Says he never left his compartment.
+
+    Meera:
+    Passenger in compartment 2.
+    Says she went to the dining car at 11:30 PM.
+
+    Kabir:
+    Train attendant.
+    Says he checked every compartment at 11:40 PM.
+
+    Rohan:
+    Passenger in compartment 4.
+    Says he was asleep.
+
+    EVIDENCE:
+
+    1. The dining car camera shows Meera arriving at 11:32 PM.
+    2. The attendant's access card shows Kabir opened the package
+       compartment at 11:38 PM.
+    3. The train maintenance log shows that the package
+       compartment's lock was malfunctioning.
+    4. The lock automatically unlocked between 11:35 PM and 11:42 PM.
+    5. A passenger reports seeing someone wearing a blue jacket
+       near the package compartment at 11:40 PM.
+    6. Aarav owns a blue jacket.
+    7. A photograph taken at 11:39 PM shows Aarav sitting in his
+       compartment.
+    8. The dining-car camera shows Rohan walking past it at 11:37 PM.
+    9. The package is later found hidden inside a cleaning cart.
+    10. Only the train attendant has access to the cleaning cart.
+    """
+        };
+
+        Scanner sc = new Scanner(System.in);
+
+
+        // IDENTITY
+        System.out.println("***************************************");
+        System.out.println("WELCOME TO THE ULTIMATE DETECTIVE GAME!");
+        System.out.println("***************************************");
+
+        System.out.println("\nYou will be given cases with increasing difficulty.\nSolve them with the clues!");
+
+        System.out.print("\n\nEnter your name detective: ");
+        name = sc.nextLine();
+
+        System.out.println();
+        identity(name, Plevel, levels);
+
+        // CASE ASSIGN
+        System.out.println("\n\n---------------");
+
+        // CASE 1:
+        System.out.println(cases[0]);
+        System.out.println("Enter your guess\n1.Arjun\n2.Kabir\n3.Dev ");
+        response = sc.nextInt();
+
+
+        while (response != sol[0]) {
+
+            while (response > 3 || response < 1) {
+                System.out.println("Invalid response. ");
+                System.out.println("Enter your guess\n1.Arjun\n2.Kabir\n3.Dev ");
+                response = sc.nextInt();
+            }
+            if (response == sol[0]) {
+
+            } else {
+                System.out.print("Wrong answer. Try again: ");
+                response = sc.nextInt();
+            }
+        }
+        if (response == sol[0]) {
+            System.out.println("Correct!!🥳 \nCongratulations! You are now leveled up to apprentice!");
+
+        }
+        System.out.println("\n\nName: " + name + "\nLevel: Apprentice\n\n");
+
+
+        // CASE 2
+
+        System.out.println(cases[1]);
+
+        case2(response, case2Solved);
+        System.out.println("Name: " + name + "\nLevel: Intermediate");
+
+        // CASE 3
+        System.out.println("\n--------------------------");
+        System.out.println(cases[2]);
+        case3(response, case3Solved);
+        System.out.println("\n\nName: "+name+"\nLevel: Expert");
+
+        // CASE 4
+        System.out.println("----------------------------");
+        case4(response, case4Solved);
+
+
+        // CASE 5
+        case5(response, case5Solved);
+
+        sc.close();
+
+    }
+
+    static void identity(String name, String Plevel, String[] levels) {
+        int i = -1;
+        i++;
+        Plevel = levels[i];
+        System.out.println("Name: " + name + "\nLevel: " + Plevel);
+
+
+    }
+
+    static void case2(int response, boolean case2Solved) {
+        while (!case2Solved) {
+            System.out.println("\n--------Main Options--------\nWHAT WILL YOU DO?\n" +
+                    "\n" +
+                    "1. Inspect the crime scene\n" +
+                    "2. Talk to someone\n" +
+                    "3. Check the office records\n" +
+                    "4. Give your answer");
+            response = sc.nextInt();
+
+            if (response == 1) {
+                boolean foundnote = false;
+                boolean inspectionMenu = true;
+                while (inspectionMenu) {
+                    System.out.println("---------Teacher's Office----------");
+                    System.out.println("You enter the office.\n" +
+                            "\n" +
+                            "You notice:\n" +
+                            "- No broken windows\n" +
+                            "- No damaged lock\n" +
+                            "- The teacher's desk is slightly moved\n" +
+                            "- The laptop charger is still on the desk\n" +
+                            "- A faint fingerprint is found near the laptop's usual position\n" +
+                            "\n" +
+                            "WHAT WILL YOU DO?\n" +
+                            "\n" +
+                            "1. Examine the fingerprint\n" +
+                            "2. Examine the door\n" +
+                            "3. Examine the desk\n" +
+                            "4. Go back");
+                    response = sc.nextInt();
+                    if (response == 1) {
+                        System.out.println("--------Fingerprint-----------");
+                        System.out.println("The fingerprint is incomplete.\n" +
+                                "\n" +
+                                "You cannot identify the person yet.\n");
+                    } else if (response == 2) {
+                        System.out.println("----------Door-----------");
+                        System.out.println("The door wasn't forced open.\n" +
+                                "\n" +
+                                "Whoever entered probably had legitimate access.");
+                    } else if (response == 3) {
+                        foundnote = true;
+
+                        System.out.println("----------------Inspecting Desk-------------------");
+                        System.out.println("There is a small piece of paper underneath the desk.\n" +
+                                "\n" +
+                                "It contains:\n" +
+                                "\"5:40 PM - return the key\"\n" +
+                                "\n" +
+                                "Interesting...");
+                    } else if (response == 4) {
+                        inspectionMenu = false;
+
+                    } else {
+                        System.out.println("Invaild Response");
+                    }
+                }
+
+            } else if (response == 2) {
+                boolean talk = true;
+                System.out.println("-------You decide to interrogate someone------");
+                while (talk) {
+                    System.out.println("\nWHO DO YOU WANT TO TALK TO?\n" +
+                            "\n" +
+                            "1. Riya\n" +
+                            "2. Sameer\n" +
+                            "3. Vikram\n" +
+                            "4. Go back ");
+                    response = sc.nextInt();
+                    if (response == 1) {
+                        boolean riya = true;
+                        System.out.println("Riya:\n" +
+                                "\n" +
+                                "\"I left at 5:10 PM.\n" +
+                                "I didn't have any reason to enter the office again.\"\n" +
+                                "\n" +
+                                "She seems confident.");
+                        while (riya) {
+                            System.out.println("You can ask: \n1. Where were you after 5:10?\n" +
+                                    "2. Did you have an office key?\n" +
+                                    "3. Did you see Sameer?\n" +
+                                    "4. Stop talking");
+                            response = sc.nextInt();
+                            if (response == 1) {
+                                System.out.println("Riya: \"I went straight home.\"");
+                            } else if (response == 2) {
+                                System.out.println("Riya: \"No. Only the receptionist and teachers normally have access.\"");
+                            } else if (response == 3) {
+                                System.out.println("Riya: \"Yes. I saw him near the office around 5:30.\"");
+                            } else if (response == 4) {
+                                riya = false;
+                            } else {
+                                System.out.println("Invaild response");
+                            }
+                        }
+
+
+                    } else if (response == 2) {
+                        boolean sameer = true;
+                        System.out.println("Sameer:\n" +
+                                "\n" +
+                                "\"I left at 5:30.\n" +
+                                "I didn't touch the laptop.\"\n" +
+                                "\n" +
+                                "He seems slightly nervous.");
+                        while (sameer) {
+                            System.out.println("\n1. Where were you after 5:30?\n" +
+                                    "2. Did you return to the office?\n" +
+                                    "3. Did you have a key?\n" +
+                                    "4. Stop talking");
+                            response = sc.nextInt();
+
+                            if (response == 1) {
+                                System.out.println("Sameer: I left the school at 5:30.");
+                            } else if (response == 2) {
+                                System.out.println("Sameer: No.");
+                            } else if (response == 3) {
+                                System.out.println("Sameer: How you talk!\n");
+                                System.out.println("He becomes a bit angry...\n");
+                                System.out.println("Sameer: How can I have the key? It is always with the teachers or the receptionist.");
+                            } else if (response == 4) {
+                                System.out.println("You show Sameer the note.\n" +
+                                        "\n" +
+                                        "Sameer becomes nervous.\n" +
+                                        "\n" +
+                                        "\"...Fine. I returned around 5:40.\n" +
+                                        "But I didn't steal anything.\"");
+                                sameer = false;
+                            } else {
+                                System.out.println("Invalid response");
+                            }
+
+
+                        }
+
+                    } else if (response == 3) {
+                        boolean vikram = true;
+                        while (vikram) {
+                            System.out.println("Vikram:\n" +
+                                    "\n" +
+                                    "\"I never entered the office.\n" +
+                                    "\n" +
+                                    "I was in the hallway around 5:20,\n" +
+                                    "but I left shortly afterward.\"");
+
+                            System.out.println("1. Ask about Sameer\n2. Stop Talking");
+                            response = sc.nextInt();
+                            if (response == 1) {
+                                System.out.println("Vikram: \"I saw Sameer near the office later.\n" +
+                                        "I don't know exactly when.\"");
+                            } else if (response == 2) {
+                                vikram = false;
+
+                            } else {
+                                System.out.println("Invalid response");
+                            }
+                        }
+                    } else if (response == 4) {
+                        talk = false;
+                    } else {
+                        System.out.println("Invalid response");
+                    }
+                }
+            } else if (response == 3) {
+                System.out.println("------------Checking computer records-----------\n");
+                System.out.println("You check the computer and access records.\n" +
+                        "\n" +
+                        "The laptop was connected to Wi-Fi at 5:42 PM.\n" +
+                        "\n" +
+                        "The signal came from INSIDE the office.\n" +
+                        "\n" +
+                        "Someone was definitely using the laptop after 5:00 PM.");
+            } else if (response == 4) {
+                System.out.println("WHO STOLE THE LAPTOP?\n" +
+                        "\n" +
+                        "1. Riya\n" +
+                        "2. Sameer\n" +
+                        "3. Vikram");
+                response = sc.nextInt();
+                if (response == 2) {
+                    System.out.println("Correct!! Case solved!");
+                    System.out.println("You are now an intermediate.");
+                    case2Solved = true;
+                } else {
+                    System.out.println("Wrong answer. Try again");
+                }
+            }
+        }
+    }
+
+
+    static void case3(int response, boolean case3Solved) {
+        while (!case3Solved) {
+            System.out.println("--------Main Options-------\nWHAT WILL YOU DO?\n" +
+                    "\n" +
+                    "1. Inspect the crime scene\n" +
+                    "2. Talk to someone\n" +
+                    "3. Check the timeline\n" +
+                    "4. Examine the necklace display\n" +
+                    "5. Give your answer");
+            response = sc.nextInt();
+
+            if (response == 1) {
+                boolean crimeS = true;
+                while (crimeS) {
+                    System.out.println("-------Crime Scene------");
+                    System.out.println("You enter the dining room.\n" +
+                            "\n" +
+                            "The room looks surprisingly normal.\n" +
+                            "\n" +
+                            "You notice:\n" +
+                            "\n" +
+                            "- The display box is open.\n" +
+                            "- There are wet footprints near the dining table.\n" +
+                            "- One dining chair has been moved.\n" +
+                            "- A small piece of dark blue fabric is caught on the chair.\n" +
+                            "- The dining room floor looks freshly cleaned.\n" +
+                            "- There are no signs of a struggle.\n" +
+                            "\n" +
+                            "WHAT WILL YOU DO?\n" +
+                            "\n" +
+                            "1. Examine the footprints\n" +
+                            "2. Examine the chair\n" +
+                            "3. Examine the blue fabric\n" +
+                            "4. Examine the floor\n" +
+                            "5. Go back");
+                    response = sc.nextInt();
+                    if (response == 1) {
+                        System.out.println("\n-----Footprints-----");
+                        System.out.println("The footprints are wet.\n" +
+                                "\n" +
+                                "They begin near the front door\n" +
+                                "and continue toward the dining table.\n" +
+                                "\n" +
+                                "Someone appears to have entered\n" +
+                                "from outside recently.");
+                    } else if (response == 2) {
+                        System.out.println("\n-----Chair-----");
+                        System.out.println("The chair was moved recently.\n" +
+                                "\n" +
+                                "There are no scratches on the floor,\n" +
+                                "so it probably wasn't moved during a struggle.\n" +
+                                "\n" +
+                                "Someone may have stood on or beside it.");
+                    } else if (response == 3) {
+                        System.out.println("\n------Fabric-----");
+                        System.out.println("The fabric is dark blue.\n" +
+                                "\n" +
+                                "It appears to have come from someone's clothing.\n" +
+                                "\n" +
+                                "Interesting...");
+                    } else if (response == 4) {
+                        System.out.println("\n--------Floor--------");
+                        System.out.println("The floor was recently mopped.\n" +
+                                "\n" +
+                                "You notice something strange.\n" +
+                                "\n" +
+                                "The wet footprints are newer than\n" +
+                                "the cleaning.\n" +
+                                "\n" +
+                                "Someone walked across the floor after it was cleaned.");
+                    } else if (response == 5) {
+                        crimeS = false;
+                    } else {
+                        System.out.println("Invaild response.");
+                    }
+                }
+            }
+            else if(response==2){
+                boolean talk=true;
+                while(talk){
+                    System.out.println("----------Talk----------");
+                    System.out.println("WHO WILL YOU QUESTION?\n" +
+                            "\n" +
+                            "1. Maya\n" +
+                            "2. Rahul\n" +
+                            "3. Anika\n" +
+                            "4. Go back");
+                    response=sc.nextInt();
+                    if(response==1){
+
+                        System.out.println("Maya says:\n" +
+                                "\n" +
+                                "\"I was preparing food in the kitchen.\n" +
+                                "I barely left the kitchen after 8:00.\"\n" +
+                                "\n" +
+                                "She looks at her hands.\n" +
+                                "\n" +
+                                "They are covered in flour.\n" +
+                                "\n" +
+                                "\"I was making the dessert.\"\n" +
+                                "\n" +
+                                "You ask if she entered the dining room.\n" +
+                                "\n" +
+                                "\"No. Not after 8:00.\"");
+                    }
+                    else if(response==2){
+                        System.out.println("Rahul says:\n" +
+                                "\n" +
+                                "\"I was sitting in the living room.\n" +
+                                "I didn't touch the necklace.\"\n" +
+                                "\n" +
+                                "You ask about the dining room.\n" +
+                                "\n" +
+                                "\"I went through it earlier,\n" +
+                                "but I wasn't there when the necklace disappeared.\"\n" +
+                                "\n" +
+                                "You notice his shoes.\n" +
+                                "\n" +
+                                "They are wet.");
+
+                        System.out.println("\nAsk Rahul about his wet shoes?\n1. Yes\n2. No");
+                        response=sc.nextInt();
+                        if(response==1){
+                            System.out.println("You ask Rahul about his wet shoes.\n" +
+                                    "\n" +
+                                    "Rahul pauses.\n" +
+                                    "\n" +
+                                    "\"I... stepped outside for a minute.\"\n" +
+                                    "\n" +
+                                    "Interesting.");
+                        }
+                    }
+                    else if(response==3){
+                        System.out.println("Anika says:\n" +
+                                "\n" +
+                                "\"I was cleaning the dining room.\n" +
+                                "I finished around 8:05.\"\n" +
+                                "\n" +
+                                "You ask about the floor.\n" +
+                                "\n" +
+                                "\"I had just mopped it.\"\n" +
+                                "\n" +
+                                "You look down at her shoes.\n" +
+                                "\n" +
+                                "They are completely dry.");
+                    }
+                    else if(response==4){
+                        talk=false;
+                    }
+                    else{
+                        System.out.println("Invaild response.");
+                    }
+                }
+
+            }
+
+            else if(response==3){
+                boolean timeline=true;
+                while(timeline){
+                    System.out.println("-------Timeline-------\n");
+                    System.out.println("THE TIMELINE\n" +
+                            "\n" +
+                            "8:00 PM\n" +
+                            "The necklace is confirmed inside the display box.\n" +
+                            "\n" +
+                            "8:05 PM\n" +
+                            "Anika says she finishes cleaning.\n" +
+                            "\n" +
+                            "8:07 PM\n" +
+                            "Rahul claims he is in the living room.\n" +
+                            "\n" +
+                            "8:10 PM\n" +
+                            "The family begins preparing for dinner.\n" +
+                            "\n" +
+                            "8:15 PM\n" +
+                            "The necklace is discovered missing.\n" +
+                            "\n" +
+                            "WHAT WILL YOU DO?\n" +
+                            "\n" +
+                            "1. Examine 8:00 PM\n" +
+                            "2. Examine 8:05 PM\n" +
+                            "3. Examine 8:07 PM\n" +
+                            "4. Examine 8:15 PM\n" +
+                            "5. Go back");
+                    response=sc.nextInt();
+
+                    if(response==1){
+                        System.out.println("\nThe necklace was definitely inside the display box.\n" +
+                                "\n" +
+                                "Maya remembers seeing it herself.");
+                    }
+                    else if(response==2){
+                        System.out.println("\nAnika says she left the dining room.\n" +
+                                "\n" +
+                                "The floor had just been mopped.");
+                    }
+                    else if(response==3){
+                        System.out.println("\nRahul claims he was in the living room.\n" +
+                                "\n" +
+                                "But his shoes are wet.\n" +
+                                "\n" +
+                                "Where did he go?");
+                    }
+                    else if(response==4){
+                        System.out.println("\nThe necklace is missing.\n" +
+                                "\n" +
+                                "The display box is open.\n" +
+                                "\n" +
+                                "There is no damage to the box.");
+                    }
+                    else if(response==5){
+                        timeline=false;
+                    }
+                    else{
+                        System.out.println("Invaild response.");
+                    }
+                }
+            }
+            else if(response==4){
+                boolean dis=true;
+                while(dis){
+                    System.out.println("--------Cheching display cabinet-------");
+                    System.out.println("You carefully examine the display box.\n" +
+                            "\n" +
+                            "WHAT WILL YOU CHECK?\n" +
+                            "\n" +
+                            "1. The lock\n" +
+                            "2. The glass\n" +
+                            "3. The inside of the box\n" +
+                            "4. The surrounding table\n" +
+                            "5. Go back");
+                    response=sc.nextInt();
+                    if(response==1){
+                        System.out.println("\nThe lock isn't damaged.\n" +
+                                "\n" +
+                                "The box was opened normally.\n" +
+                                "\n" +
+                                "Whoever took the necklace\n" +
+                                "didn't need to break into it.");
+                    }
+                    else if(response==2){
+                        System.out.println("\nThe glass is completely intact.\n" +
+                                "\n" +
+                                "There are no cracks or fingerprints\n" +
+                                "clear enough to identify anyone.");
+                    }
+                    else if(response==3){
+                        System.out.println("\nYou find a tiny white thread\n" +
+                                "inside the display box.\n" +
+                                "\n" +
+                                "It appears to have come\n" +
+                                "from clothing.");
+                    }
+                    else if(response==4){
+                        System.out.println("\nYou notice something strange.\n" +
+                                "\n" +
+                                "There is a tiny drop of water\n" +
+                                "beside the display box.\n" +
+                                "\n" +
+                                "Why would there be water here?");
+                    }
+                    else if(response==5){
+                        dis=false;
+                    }
+                    else {
+                        System.out.println("Invalid response.");
+                    }
+                }
+
+            }
+            else if(response==5){
+                System.out.println("--------Answer------");
+                System.out.println("WHO DO YOU THINK STOLE THE NECKLACE?\n" +
+                        "\n" +
+                        "1. Maya\n" +
+                        "2. Rahul\n" +
+                        "3. Anika");
+                response=sc.nextInt();
+                if(response==1){
+                    System.out.println("Wrong!");
+                }
+                else if(response==2){
+                    System.out.println("Correct!\nCogratulations! You are now an expert.");
+                    case3Solved=true;
+                }
+                else if(response==3){
+                    System.out.println("Wrong!");
+                }
+                else{
+                    System.out.println("Invalid answer");
+                }
+            }
+
+        }
+    }
+    static void case4(int response, boolean case4Solved){
+
+        System.out.println("\n\n=======================================");
+        System.out.println("             CASE 4: THE CITY THAT NEVER SLEEPS");
+        System.out.println("=======================================");
+        System.out.println("\nINTRODUCTION:");
+        System.out.println("A storm has swallowed Ravenwood City.");
+        System.out.println("At 7:42 PM, Detective Elias Ward is found dead in Room 307 of the Ravenwood Hotel.");
+        System.out.println("His notebook is missing, and the only clear clue is a strange word scratched on his badge: WARDEN.");
+        System.out.println("\nBut this is not an ordinary murder.");
+        System.out.println("Evidence at the hotel points to the abandoned Old Metro Station.");
+        System.out.println("The metro leads to a warehouse near the harbor.");
+        System.out.println("And every clue seems to point toward one place: the Old Observatory.");
+        System.out.println("\nThree locations. One hidden connection. A missing diary.\n");
+        System.out.println("Your job is to reconstruct what happened, follow the clues across the city, and identify the person responsible.");
+        System.out.println("You can record your own observations in a detective diary as you investigate.");
+        System.out.println("\nCASE 4 BEGINS NOW.");
+
+        String diary = "";
+        boolean diaryMenu = true;
+        boolean chaseEventDone = false;
+
+        while (!case4Solved) {
+
+            System.out.println("\n=======================================");
+            System.out.println("       CASE 4: THE CITY THAT NEVER SLEEPS");
+            System.out.println("=======================================");
+            System.out.println("\nCurrent time: " + "7:42 PM");
+
+            System.out.println("\n--------MAIN INVESTIGATION--------");
+            System.out.println("WHAT WILL YOU DO?\n" +
+                    "\n" +
+                    "1. Investigate Ravenwood Hotel\n" +
+                    "2. Investigate Old Metro Station\n" +
+                    "3. Investigate Harbor Warehouse\n" +
+                    "4. Go to the Old Observatory\n" +
+                    "5. Open detective diary\n" +
+                    "6. Give your answer");
+
+            response = sc.nextInt();
+
+            if (response == 1) {
+
+                boolean hotel = true;
+
+                while (hotel) {
+
+                    System.out.println("\n=======================================");
+                    System.out.println("       CRIME SCENE 1: RAVENWOOD HOTEL");
+                    System.out.println("=======================================");
+                    System.out.println("Time: 7:42 PM");
+                    System.out.println("\nRain is hitting the windows.");
+                    System.out.println("Room 307 is silent.");
+                    System.out.println("A detective has been found dead inside.");
+                    System.out.println("There are signs that a struggle occurred.");
+                    System.out.println("The window is open.");
+                    System.out.println("The detective's notebook is missing.");
+
+                    System.out.println("\nWHAT WILL YOU DO?\n" +
+                            "\n" +
+                            "1. Examine the desk\n" +
+                            "2. Examine the window\n" +
+                            "3. Examine the detective's badge\n" +
+                            "4. Search the room\n" +
+                            "5. Question hotel witnesses\n" +
+                            "6. Write in your diary\n" +
+                            "7. Leave the hotel");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        System.out.println("\n--------DESK--------");
+                        System.out.println("The desk contains:");
+                        System.out.println("- A broken watch");
+                        System.out.println("- A hotel keycard");
+                        System.out.println("- Three sheets of paper");
+                        System.out.println("- A half-finished cup of coffee");
+                        System.out.println("- A photograph");
+
+                        System.out.println("\nThe broken watch stopped at 7:31 PM.");
+                        System.out.println("The coffee is still warm.");
+
+                        System.out.println("\nThe photograph shows four people");
+                        System.out.println("standing outside the Old Observatory.");
+                        System.out.println("One of them is the murdered detective.");
+                        System.out.println("The other faces are partly hidden.");
+
+                    } else if (response == 2) {
+
+                        System.out.println("\n--------WINDOW--------");
+                        System.out.println("You examine the open window.");
+                        System.out.println("\nThere are muddy footprints near it.");
+                        System.out.println("The hotel room is on the third floor.");
+                        System.out.println("There is no fire escape.");
+                        System.out.println("\nAcross the alley, you notice a thin cable");
+                        System.out.println("attached to another building.");
+                        System.out.println("\nYou cannot tell yet whether the cable");
+                        System.out.println("was used to escape.");
+
+                    } else if (response == 3) {
+
+                        System.out.println("\n--------BADGE--------");
+                        System.out.println("The detective's badge has been scratched.");
+                        System.out.println("\nOnly one word remains readable:");
+                        System.out.println("\nWARDEN");
+                        System.out.println("\nYou have no idea what it means yet.");
+
+                    } else if (response == 4) {
+
+                        System.out.println("\n--------SEARCHING THE ROOM--------");
+                        System.out.println("You search beneath the desk.");
+                        System.out.println("You find a torn piece of paper.");
+                        System.out.println("\nIt contains:");
+                        System.out.println("\"M-17\"");
+                        System.out.println("\nThe same symbol appears on the hotel keycard.");
+
+                    } else if (response == 5) {
+
+                        boolean witnesses = true;
+
+                        while (witnesses) {
+
+                            System.out.println("\n--------HOTEL WITNESSES--------");
+                            System.out.println("WHO WILL YOU QUESTION?\n" +
+                                    "\n" +
+                                    "1. Hotel manager\n" +
+                                    "2. Night receptionist\n" +
+                                    "3. Guest from Room 305\n" +
+                                    "4. Security guard\n" +
+                                    "5. Go back");
+
+                            response = sc.nextInt();
+
+                            if (response == 1) {
+
+                                System.out.println("\nMANAGER:");
+                                System.out.println("\"I heard shouting around 7:30 PM.\"");
+                                System.out.println("\"But I didn't see anyone leave.\"");
+
+                            } else if (response == 2) {
+
+                                System.out.println("\nRECEPTIONIST:");
+                                System.out.println("\"Someone called Room 307 at 7:24 PM.\"");
+                                System.out.println("\"The caller asked me not to transfer the call.\"");
+
+                            } else if (response == 3) {
+
+                                System.out.println("\nROOM 305 GUEST:");
+                                System.out.println("\"I heard two people arguing.\"");
+                                System.out.println("\"I couldn't understand everything.\"");
+                                System.out.println("\"But I heard one sentence clearly.\"");
+                                System.out.println("\n'Where is the diary?'");
+
+                            } else if (response == 4) {
+
+                                System.out.println("\nSECURITY GUARD:");
+                                System.out.println("\"A person ran toward the stairs at about 7:35.\"");
+                                System.out.println("\"I couldn't see their face.\"");
+
+                            } else if (response == 5) {
+
+                                witnesses = false;
+
+                            } else {
+
+                                System.out.println("Invalid response.");
+
+                            }
+                        }
+
+                    } else if (response == 6) {
+
+                        sc.nextLine();
+                        System.out.println("\n--------DETECTIVE DIARY--------");
+                        System.out.println("Write your observation:");
+                        String note = sc.nextLine();
+
+                        if (diary.length() == 0) {
+                            diary = "1. " + note;
+                        } else {
+                            diary = diary + "\n" + (diary.split("\n").length + 1) + ". " + note;
+                        }
+
+                        System.out.println("\nObservation added to your diary.");
+
+                    } else if (response == 7) {
+
+                        hotel = false;
+
+                    } else {
+
+                        System.out.println("Invalid response.");
+
+                    }
+                }
+
+            } else if (response == 2) {
+
+                boolean metro = true;
+
+                while (metro) {
+
+                    System.out.println("\n=======================================");
+                    System.out.println("       CRIME SCENE 2: OLD METRO STATION");
+                    System.out.println("=======================================");
+                    System.out.println("Time: 9:05 PM");
+
+                    System.out.println("\nThe station was closed twelve years ago.");
+                    System.out.println("There are no passengers.");
+                    System.out.println("No trains should be running.");
+
+                    System.out.println("\nThen...");
+                    System.out.println("A train suddenly passes through the darkness.");
+
+                    System.out.println("\nWHAT WILL YOU DO?\n" +
+                            "\n" +
+                            "1. Examine Platform M-17\n" +
+                            "2. Search the abandoned ticket office\n" +
+                            "3. Investigate the tunnel\n" +
+                            "4. Follow the train\n" +
+                            "5. Write in your diary\n" +
+                            "6. Leave the station");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        System.out.println("\n--------PLATFORM M-17--------");
+                        System.out.println("The platform is covered in dust.");
+                        System.out.println("Someone has recently walked across it.");
+                        System.out.println("\nYou find a small metal token.");
+                        System.out.println("It has the word WARDEN engraved on it.");
+
+                    } else if (response == 2) {
+
+                        System.out.println("\n--------TICKET OFFICE--------");
+                        System.out.println("You find an old newspaper.");
+                        System.out.println("\nHEADLINE:");
+                        System.out.println("\"CITY INVESTIGATION ENDS AFTER OBSERVATORY FIRE\"");
+                        System.out.println("\nThe article is twelve years old.");
+                        System.out.println("\nFour names are mentioned:");
+                        System.out.println("Detective Elias Ward");
+                        System.out.println("Dr. Adrian Vale");
+                        System.out.println("Marcus Reed");
+                        System.out.println("Elena Cross");
+                        System.out.println("\nYou recognize Detective Elias Ward.");
+                        System.out.println("He is the detective from the hotel.");
+
+                    } else if (response == 3) {
+
+                        System.out.println("\n--------TUNNEL--------");
+                        System.out.println("The tunnel is almost completely dark.");
+                        System.out.println("You find fresh footprints.");
+                        System.out.println("They lead toward an old maintenance door.");
+                        System.out.println("\nThe door is locked from the other side.");
+
+                    } else if (response == 4) {
+
+                        if (chaseEventDone) {
+                            System.out.println("\n--------THE CHASE--------");
+                            System.out.println("This event has already happened.");
+                            System.out.println("You already made your decision.");
+                            System.out.println("Your choice is FINAL and cannot be changed or replayed.");
+                            System.out.println("The clue from your original choice remains in your evidence.");
+                        } else {
+                            System.out.println("\n--------THE CHASE--------");
+                            System.out.println("You hear footsteps.");
+                            System.out.println("A figure is running through the station.");
+                            System.out.println("\nYou shout: \"STOP!\"");
+                            System.out.println("The figure runs faster.");
+
+                            System.out.println("\nIMPORTANT: THIS IS A ONE-TIME EVENT.");
+                            System.out.println("Once you choose Chase, Intercept, or Hide, your decision is FINAL.");
+                            System.out.println("You CANNOT undo or change your choice later.");
+
+                            System.out.println("\nWHAT WILL YOU DO?\n" +
+                                    "\n" +
+                                    "1. Chase the person\n" +
+                                    "2. Take another route and intercept them\n" +
+                                    "3. Hide and observe");
+
+                            response = sc.nextInt();
+
+                            if (response == 1) {
+                                chaseEventDone = true;
+                                System.out.println("\nYou chose to CHASE.");
+                                System.out.println("The figure escapes through a narrow corridor.");
+                                System.out.println("A metal door slams shut behind them.");
+                                System.out.println("\nCLUE DISCOVERED:");
+                                System.out.println("The route ends at a locked maintenance door.");
+                                System.out.println("The person likely knows the station's restricted routes.");
+                                System.out.println("\nYour decision is FINAL. It cannot be changed.");
+
+                            } else if (response == 2) {
+                                chaseEventDone = true;
+                                System.out.println("\nYou chose to INTERCEPT.");
+                                System.out.println("You take a side corridor and reach the next platform.");
+                                System.out.println("The figure changes direction and disappears.");
+                                System.out.println("A silver hotel keycard falls to the floor.");
+                                System.out.println("\nCLUE DISCOVERED:");
+                                System.out.println("The figure had access to a hotel room or hotel-controlled area.");
+                                System.out.println("\nYour decision is FINAL. It cannot be changed.");
+
+                            } else if (response == 3) {
+                                chaseEventDone = true;
+                                System.out.println("\nYou chose to HIDE AND OBSERVE.");
+                                System.out.println("You hide behind a pillar.");
+                                System.out.println("The figure runs past you.");
+                                System.out.println("For one second, you see their face.");
+                                System.out.println("\nCLUE DISCOVERED:");
+                                System.out.println("The figure is the hotel receptionist.");
+                                System.out.println("\nYour decision is FINAL. It cannot be changed.");
+
+                            } else {
+                                System.out.println("Invalid response.");
+                                System.out.println("The one-time event has NOT been used.");
+                                System.out.println("Choose Chase, Intercept, or Hide.");
+                            }
+                        }
+
+                    } else if (response == 5) {
+
+                        sc.nextLine();
+                        System.out.println("\n--------DETECTIVE DIARY--------");
+                        System.out.println("Write your observation:");
+                        String note = sc.nextLine();
+
+                        if (diary.length() == 0) {
+                            diary = "1. " + note;
+                        } else {
+                            diary = diary + "\n" + (diary.split("\n").length + 1) + ". " + note;
+                        }
+
+                        System.out.println("\nObservation added to your diary.");
+
+                    } else if (response == 6) {
+
+                        metro = false;
+
+                    } else {
+
+                        System.out.println("Invalid response.");
+
+                    }
+                }
+
+            } else if (response == 3) {
+
+                boolean warehouse = true;
+
+                while (warehouse) {
+
+                    System.out.println("\n=======================================");
+                    System.out.println("       CRIME SCENE 3: HARBOR WAREHOUSE");
+                    System.out.println("=======================================");
+                    System.out.println("Time: 11:40 PM");
+
+                    System.out.println("\nThe warehouse is almost completely empty.");
+                    System.out.println("Rainwater drips through the roof.");
+                    System.out.println("A single table stands in the middle.");
+
+                    System.out.println("\nOn the table:");
+                    System.out.println("- Four photographs");
+                    System.out.println("- A city map");
+                    System.out.println("- A pocket watch");
+                    System.out.println("- An old newspaper");
+                    System.out.println("- A locked metal box");
+
+                    System.out.println("\nWHAT WILL YOU DO?\n" +
+                            "\n" +
+                            "1. Examine the photographs\n" +
+                            "2. Examine the city map\n" +
+                            "3. Examine the pocket watch\n" +
+                            "4. Examine the newspaper\n" +
+                            "5. Examine the metal box\n" +
+                            "6. Write in your diary\n" +
+                            "7. Leave the warehouse");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        System.out.println("\n--------PHOTOGRAPHS--------");
+                        System.out.println("The photographs show four locations:");
+                        System.out.println("1. Ravenwood Hotel");
+                        System.out.println("2. Old Metro Station");
+                        System.out.println("3. Harbor Warehouse");
+                        System.out.println("4. Old Observatory");
+
+                        System.out.println("\nThe same four people appear in the photographs.");
+                        System.out.println("Someone has been following their movements.");
+
+                    } else if (response == 2) {
+
+                        System.out.println("\n--------CITY MAP--------");
+                        System.out.println("Four locations are marked.");
+                        System.out.println("\nYou connect the points.");
+                        System.out.println("They form a rough pattern across the city.");
+                        System.out.println("\nAt the center of the pattern:");
+                        System.out.println("THE OLD OBSERVATORY.");
+
+                    } else if (response == 3) {
+
+                        System.out.println("\n--------POCKET WATCH--------");
+                        System.out.println("The watch stopped at 11:17 PM.");
+                        System.out.println("\nA tiny inscription is engraved inside:");
+                        System.out.println("\"WARDEN KNOWS.\"");
+
+                    } else if (response == 4) {
+
+                        System.out.println("\n--------NEWSPAPER--------");
+                        System.out.println("You find the same twelve-year-old article");
+                        System.out.println("about the observatory fire.");
+                        System.out.println("\nBut someone has circled one sentence:");
+                        System.out.println("\"The investigation was closed without a final report.\"");
+
+                    } else if (response == 5) {
+
+                        System.out.println("\n--------METAL BOX--------");
+                        System.out.println("The box has a three-digit lock.");
+                        System.out.println("\nWritten beside it:");
+                        System.out.println("\"THE NIGHT THE CITY FORGOT.\"");
+
+                        System.out.println("\nYou remember the strange times:");
+                        System.out.println("7:31 PM - the detective's watch stopped.");
+                        System.out.println("9:05 PM - you reached M-17.");
+                        System.out.println("11:17 PM - the pocket watch stopped.");
+
+                        System.out.println("\nThe useful number is hidden in the investigation.");
+                        System.out.println("Enter the three-digit code:");
+                        int code = sc.nextInt();
+
+                        if (code == 731) {
+
+                            System.out.println("\nThe lock clicks open.");
+                            System.out.println("\nInside is a black diary.");
+                            System.out.println("It belongs to Detective Elias Ward.");
+
+                            System.out.println("\nThe first readable page says:");
+                            System.out.println("\"If I disappear, look beneath the observatory.\"");
+
+                        } else {
+
+                            System.out.println("\nThe lock doesn't move.");
+                            System.out.println("Maybe another clue will explain the code.");
+
+                        }
+
+                    } else if (response == 6) {
+
+                        sc.nextLine();
+                        System.out.println("\n--------DETECTIVE DIARY--------");
+                        System.out.println("Write your observation:");
+                        String note = sc.nextLine();
+
+                        if (diary.length() == 0) {
+                            diary = "1. " + note;
+                        } else {
+                            diary = diary + "\n" + (diary.split("\n").length + 1) + ". " + note;
+                        }
+
+                        System.out.println("\nObservation added to your diary.");
+
+                    } else if (response == 7) {
+
+                        warehouse = false;
+
+                    } else {
+
+                        System.out.println("Invalid response.");
+
+                    }
+                }
+
+            } else if (response == 4) {
+
+                boolean observatory = true;
+
+                while (observatory && !case4Solved) {
+
+                    System.out.println("\n=======================================");
+                    System.out.println("       CRIME SCENE 4: OLD OBSERVATORY");
+                    System.out.println("=======================================");
+                    System.out.println("Time: 1:15 AM");
+
+                    System.out.println("\nThe observatory stands above the city.");
+                    System.out.println("Rain beats against the glass dome.");
+                    System.out.println("The electricity suddenly cuts out.");
+
+                    System.out.println("\nA woman steps from the darkness.");
+                    System.out.println("ELENA CROSS.");
+                    System.out.println("\nShe was one of the four people in the old photographs.");
+
+                    System.out.println("\nElena says:");
+                    System.out.println("\"The detective wasn't investigating a murder.\"");
+                    System.out.println("\"He was investigating a cover-up.\"");
+                    System.out.println("\"And now whoever caused it knows you have his diary.\"");
+
+                    System.out.println("\nWHAT WILL YOU DO?\n" +
+                            "\n" +
+                            "1. Examine the telescope room\n" +
+                            "2. Search the observatory basement\n" +
+                            "3. Examine the old photographs\n" +
+                            "4. Examine the security system\n" +
+                            "5. Question Elena\n" +
+                            "6. Write in your diary\n" +
+                            "7. Continue deeper into the observatory\n" +
+                            "8. Leave");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        System.out.println("\n--------TELESCOPE ROOM--------");
+                        System.out.println("The telescope is pointed toward the harbor.");
+                        System.out.println("\nA small red light is blinking beneath it.");
+                        System.out.println("You find a hidden recording device.");
+
+                        System.out.println("\nThe recording contains Detective Ward's voice:");
+                        System.out.println("\"The person I trusted most is involved.\"");
+
+                    } else if (response == 2) {
+
+                        System.out.println("\n--------OBSERVATORY BASEMENT--------");
+                        System.out.println("You discover an old filing cabinet.");
+                        System.out.println("\nInside are documents from twelve years ago.");
+                        System.out.println("Several pages have been removed.");
+
+                        System.out.println("\nOne remaining page contains a signature:");
+                        System.out.println("VICTOR VALE.");
+
+                    } else if (response == 3) {
+
+                        System.out.println("\n--------OLD PHOTOGRAPHS--------");
+                        System.out.println("You compare the hotel photograph");
+                        System.out.println("with the twelve-year-old photograph.");
+
+                        System.out.println("\nThree people are in both photographs.");
+                        System.out.println("One person is missing from the newer photograph.");
+
+                        System.out.println("\nThe missing person:");
+                        System.out.println("Marcus Reed.");
+
+                    } else if (response == 4) {
+
+                        System.out.println("\n--------SECURITY SYSTEM--------");
+                        System.out.println("The observatory security system is still active.");
+                        System.out.println("\nYou check the access history.");
+
+                        System.out.println("7:18 PM - Elena Cross");
+                        System.out.println("8:03 PM - Unknown access");
+                        System.out.println("10:51 PM - Victor Vale");
+                        System.out.println("1:02 AM - Unknown access");
+
+                        System.out.println("\nSomeone has been entering the observatory");
+                        System.out.println("throughout the night.");
+
+                    } else if (response == 5) {
+
+                        boolean elenaTalk = true;
+
+                        while (elenaTalk) {
+
+                            System.out.println("\n--------QUESTION ELENA--------");
+                            System.out.println("1. Ask about Detective Ward");
+                            System.out.println("2. Ask about the observatory fire");
+                            System.out.println("3. Ask about Victor Vale");
+                            System.out.println("4. Ask about Marcus Reed");
+                            System.out.println("5. Stop questioning");
+
+                            response = sc.nextInt();
+
+                            if (response == 1) {
+
+                                System.out.println("\nElena:");
+                                System.out.println("\"Ward discovered something twelve years ago.\"");
+                                System.out.println("\"He spent years trying to prove it.\"");
+
+                            } else if (response == 2) {
+
+                                System.out.println("\nElena:");
+                                System.out.println("\"The fire was supposed to destroy the evidence.\"");
+                                System.out.println("\"But someone survived.\"");
+
+                            } else if (response == 3) {
+
+                                System.out.println("\nElena becomes silent.");
+                                System.out.println("\n\"Victor knew more than he admitted.\"");
+                                System.out.println("\"But he wasn't the only one.\"");
+
+                            } else if (response == 4) {
+
+                                System.out.println("\nElena:");
+                                System.out.println("\"Marcus disappeared after the fire.\"");
+                                System.out.println("\"Nobody ever found him.\"");
+
+                            } else if (response == 5) {
+
+                                elenaTalk = false;
+
+                            } else {
+
+                                System.out.println("Invalid response.");
+
+                            }
+                        }
+
+                    } else if (response == 6) {
+
+                        sc.nextLine();
+                        System.out.println("\n--------DETECTIVE DIARY--------");
+                        System.out.println("Write your observation:");
+                        String note = sc.nextLine();
+
+                        if (diary.length() == 0) {
+                            diary = "1. " + note;
+                        } else {
+                            diary = diary + "\n" + (diary.split("\n").length + 1) + ". " + note;
+                        }
+
+                        System.out.println("\nObservation added to your diary.");
+
+                    } else if (response == 7) {
+
+                        System.out.println("\n--------THE FINAL CONFRONTATION--------");
+                        System.out.println("You hear a door slam somewhere below.");
+                        System.out.println("Someone else is inside the observatory.");
+
+                        System.out.println("\nA figure appears at the end of the corridor.");
+
+                        System.out.println("\nWHAT WILL YOU DO?\n" +
+                                "\n" +
+                                "1. Duck and move away\n" +
+                                "2. Block the attack and create distance\n" +
+                                "3. Run toward the main entrance\n" +
+                                "4. Shout for help\n" +
+                                "5. Show your detective badge and demand they stop");
+
+                        response = sc.nextInt();
+
+                        if (response == 1) {
+
+                            System.out.println("\nYou duck and move behind a pillar.");
+                            System.out.println("The figure rushes past.");
+                            System.out.println("\nYou spot something on the floor.");
+                            System.out.println("A torn piece of Victor Vale's coat.");
+
+                        } else if (response == 2) {
+
+                            System.out.println("\nYou protect yourself and create distance.");
+                            System.out.println("The figure backs away.");
+                            System.out.println("\nFor a moment, their face is visible.");
+                            System.out.println("It is Victor Vale.");
+
+                        } else if (response == 3) {
+
+                            System.out.println("\nYou run toward the entrance.");
+                            System.out.println("The figure follows.");
+                            System.out.println("\nYou reach the main hall and call for help.");
+                            System.out.println("The figure disappears into the rain.");
+
+                        } else if (response == 4) {
+
+                            System.out.println("\nYou shout for help.");
+                            System.out.println("Elena activates the emergency alarm.");
+                            System.out.println("\nThe figure escapes through a side passage.");
+                            System.out.println("You find a dropped access card.");
+                            System.out.println("The card belongs to Victor Vale.");
+
+                        } else if (response == 5) {
+
+                            System.out.println("\nYou raise your detective badge.");
+                            System.out.println("\"Stop! Detective investigation!\"");
+                            System.out.println("\nThe figure freezes.");
+                            System.out.println("The emergency lights turn on.");
+
+                            System.out.println("\nIt is Victor Vale.");
+
+                            System.out.println("Victor says:");
+                            System.out.println("\"Ward found the truth.\"");
+                            System.out.println("\"I tried to stop him from exposing it.\"");
+
+                        } else {
+
+                            System.out.println("Invalid response.");
+
+                        }
+
+                    } else if (response == 8) {
+
+                        observatory = false;
+
+                    } else {
+
+                        System.out.println("Invalid response.");
+
+                    }
+                }
+
+            } else if (response == 5) {
+
+                boolean openDiary = true;
+
+                while (openDiary) {
+
+                    System.out.println("\n=======================================");
+                    System.out.println("           DETECTIVE DIARY");
+                    System.out.println("=======================================");
+
+                    if (diary.length() == 0) {
+
+                        System.out.println("\nYour diary is currently empty.");
+
+                    } else {
+
+                        System.out.println("\nYOUR OBSERVATIONS:\n");
+                        System.out.println(diary);
+
+                    }
+
+                    System.out.println("\nWHAT WILL YOU DO?\n" +
+                            "\n" +
+                            "1. Add a new observation\n" +
+                            "2. Read diary again\n" +
+                            "3. Go back");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        sc.nextLine();
+                        System.out.println("\nWrite your observation:");
+                        String note = sc.nextLine();
+
+                        if (diary.length() == 0) {
+                            diary = "1. " + note;
+                        } else {
+                            diary = diary + "\n" + (diary.split("\n").length + 1) + ". " + note;
+                        }
+
+                        System.out.println("\nObservation added.");
+
+                    } else if (response == 2) {
+
+                        if (diary.length() == 0) {
+                            System.out.println("\nYour diary is empty.");
+                        } else {
+                            System.out.println("\nYOUR OBSERVATIONS:\n");
+                            System.out.println(diary);
+                        }
+
+                    } else if (response == 3) {
+
+                        openDiary = false;
+
+                    } else {
+
+                        System.out.println("Invalid response.");
+
+                    }
+                }
+
+            } else if (response == 6) {
+
+                System.out.println("\n=======================================");
+                System.out.println("             FINAL ANSWER");
+                System.out.println("=======================================");
+
+                System.out.println("\nWHO DO YOU THINK IS RESPONSIBLE?");
+                System.out.println("\n1. Nina");
+                System.out.println("2. Omar");
+                System.out.println("3. Victor");
+                System.out.println("4. Lena");
+
+                response = sc.nextInt();
+
+                if (response == 3) {
+
+                    System.out.println("\nCORRECT!!");
+                    System.out.println("You connected the hotel, metro, warehouse,");
+                    System.out.println("and observatory investigations.");
+                    System.out.println("\nVictor Vale was responsible.");
+                    System.out.println("\nThe city finally knows what happened.");
+                    System.out.println("\nCongratulations! You are now a Master detective.");
+                    case4Solved = true;
+
+                } else if (response >= 1 && response <= 4) {
+
+                    System.out.println("\nThat answer doesn't fit all the evidence.");
+                    System.out.println("The investigation is still open.");
+
+                } else {
+
+                    System.out.println("\nInvalid answer.");
+
+                }
+
+            } else {
+
+                System.out.println("\nInvalid response.");
+
+            }
+        }
+    }
+    static void case5(int response, boolean case5Solved) {
+
+        System.out.println("\n\n=======================================");
+        System.out.println("          CASE 5: THE LAST PERSON YOU KNOW");
+        System.out.println("=======================================");
+        System.out.println("\nThis case is different.");
+        System.out.println("The clock will move while you investigate.");
+        System.out.println("Time passes in real time.");
+        System.out.println("For this case, 1 real second = 1 minute in the case.");
+        System.out.println("\nYou will have conversations.");
+        System.out.println("People will make decisions of their own.");
+        System.out.println("Some events happen only once.");
+        System.out.println("Some choices cannot be undone.");
+        System.out.println("\nAnd this time...");
+        System.out.println("the case is personal.");
+
+        long startTime = System.currentTimeMillis();
+        int startHour = 20;
+        int startMinute = 0;
+
+        String diary = "";
+        boolean phoneCallDone = false;
+        boolean apartmentInvestigated = false;
+        boolean editorQuestioned = false;
+        boolean blueDoorEventDone = false;
+        boolean strangerEventDone = false;
+        boolean mayaFound = false;
+        boolean finalChoiceMade = false;
+        boolean evidenceSaved = false;
+        int majorChoice = 0;
+
+        while (!case5Solved) {
+
+            long elapsedSeconds = (System.currentTimeMillis() - startTime) / 1000;
+            long totalMinutes = startHour * 60L + startMinute + elapsedSeconds;
+
+            int currentHour = (int)((totalMinutes / 60) % 24);
+            int currentMinute = (int)(totalMinutes % 60);
+
+            String period = currentHour >= 12 ? "PM" : "AM";
+            int displayHour = currentHour % 12;
+            if (displayHour == 0) {
+                displayHour = 12;
+            }
+
+            System.out.println("\n=======================================");
+            System.out.println("       CASE 5: THE LAST PERSON YOU KNOW");
+            System.out.println("=======================================");
+            System.out.printf("CASE TIME: %02d:%02d %s%n", displayHour, currentMinute, period);
+
+            if (currentHour >= 23 || currentHour < 4) {
+                System.out.println("The night is getting late.");
+            } else if (currentHour >= 21) {
+                System.out.println("The city is becoming quieter.");
+            }
+
+            System.out.println("\n--------MAIN INVESTIGATION--------");
+            System.out.println("WHAT WILL YOU DO?");
+            System.out.println("1. Check your phone");
+            System.out.println("2. Go to Maya's apartment");
+            System.out.println("3. Visit the newspaper office");
+            System.out.println("4. Investigate the blue door");
+            System.out.println("5. Follow a suspicious stranger");
+            System.out.println("6. Open detective diary");
+            System.out.println("7. Go to the final location");
+
+            response = sc.nextInt();
+
+            if (response == 1) {
+
+                System.out.println("\n--------PHONE--------");
+
+                if (!phoneCallDone) {
+
+                    phoneCallDone = true;
+
+                    System.out.println("Your phone rings.");
+                    System.out.println("The caller is MAYA SEN.");
+                    System.out.println("She is a junior investigative journalist.");
+                    System.out.println("\nMaya:");
+                    System.out.println("\"Don't come looking for me.\"");
+                    System.out.println("\"If I don't call by midnight, find the blue door.\"");
+                    System.out.println("\"And please... don't trust the people who say they know me.\"");
+                    System.out.println("\nThe call ends.");
+
+                    System.out.println("\nA message appears immediately afterward:");
+                    System.out.println("\"MEMORY PROJECT - ACCESS GRANTED.\"");
+
+                    System.out.println("\nYou have never heard of the Memory Project.");
+
+                } else {
+
+                    System.out.println("You check the phone again.");
+                    System.out.println("No new call from Maya.");
+
+                    if (!mayaFound) {
+                        System.out.println("There is still one unread message:");
+                        System.out.println("\"BLUE DOOR. BEFORE MIDNIGHT.\"");
+                    } else {
+                        System.out.println("Maya's number is still open on the screen.");
+                    }
+                }
+
+            } else if (response == 2) {
+
+                boolean apartment = true;
+
+                while (apartment) {
+
+                    System.out.println("\n=======================================");
+                    System.out.println("             MAYA'S APARTMENT");
+                    System.out.println("=======================================");
+
+                    if (!apartmentInvestigated) {
+
+                        apartmentInvestigated = true;
+
+                        System.out.println("The apartment door is unlocked.");
+                        System.out.println("No one answers.");
+
+                        System.out.println("\nInside, you notice:");
+                        System.out.println("- A laptop left open");
+                        System.out.println("- Two cups of tea");
+                        System.out.println("- A city map covered in circles");
+                        System.out.println("- A framed family photograph");
+                        System.out.println("- A drawer labelled \"OLD CASES\"");
+
+                        System.out.println("\nThe second cup of tea is still warm.");
+
+                    }
+
+                    System.out.println("\nWHAT WILL YOU EXAMINE?");
+                    System.out.println("1. Laptop");
+                    System.out.println("2. City map");
+                    System.out.println("3. Family photograph");
+                    System.out.println("4. Old case drawer");
+                    System.out.println("5. Leave");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        System.out.println("\n--------LAPTOP--------");
+                        System.out.println("A document is open.");
+                        System.out.println("\nTITLE:");
+                        System.out.println("\"THE PERSON WHO ISN'T SUPPOSED TO EXIST\"");
+
+                        System.out.println("\nThe document contains one name:");
+                        System.out.println("YOUR NAME.");
+
+                        System.out.println("\nBelow it:");
+                        System.out.println("\"Predicted response to unexpected personal information: investigation.\"");
+
+                        System.out.println("\nThe document suddenly disappears.");
+
+                    } else if (response == 2) {
+
+                        System.out.println("\n--------CITY MAP--------");
+                        System.out.println("Several places are circled:");
+                        System.out.println("- Maya's apartment");
+                        System.out.println("- The newspaper office");
+                        System.out.println("- An old records building");
+                        System.out.println("- A blue door in District 7");
+
+                        System.out.println("\nA line connects all four places.");
+                        System.out.println("At the end of the line is one word:");
+                        System.out.println("ARCHIVE.");
+
+                    } else if (response == 3) {
+
+                        System.out.println("\n--------FAMILY PHOTOGRAPH--------");
+                        System.out.println("It is a photograph of Maya with her parents.");
+                        System.out.println("\nBut someone has been cut out.");
+
+                        System.out.println("Only part of that person's sleeve remains.");
+
+                        System.out.println("\nOn the back, Maya wrote:");
+                        System.out.println("\"She found out before I did.\"");
+
+                    } else if (response == 4) {
+
+                        System.out.println("\n--------OLD CASES--------");
+                        System.out.println("You find newspaper clippings about missing people.");
+                        System.out.println("Every case was officially closed.");
+                        System.out.println("\nBut Maya has written the same note on each file:");
+                        System.out.println("\"They were not missing.");
+                        System.out.println("Someone made them disappear from the records.\"");
+
+                    } else if (response == 5) {
+
+                        apartment = false;
+
+                    } else {
+
+                        System.out.println("Invalid response.");
+
+                    }
+                }
+
+            } else if (response == 3) {
+
+                boolean office = true;
+
+                while (office) {
+
+                    System.out.println("\n=======================================");
+                    System.out.println("          RAVENWOOD NEWS OFFICE");
+                    System.out.println("=======================================");
+
+                    System.out.println("Most of the desks are empty.");
+                    System.out.println("Maya's editor is still working.");
+
+                    System.out.println("\nWHAT WILL YOU DO?");
+                    System.out.println("1. Talk to the editor");
+                    System.out.println("2. Search Maya's desk");
+                    System.out.println("3. Check the archive terminal");
+                    System.out.println("4. Leave");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        if (!editorQuestioned) {
+
+                            editorQuestioned = true;
+
+                            System.out.println("\nEDITOR:");
+                            System.out.println("\"Maya resigned this afternoon.\"");
+                            System.out.println("\"She left without saying goodbye.\"");
+
+                            System.out.println("\nYou ask about the Memory Project.");
+
+                            System.out.println("The editor stops typing.");
+
+                            System.out.println("\"I don't know what you're talking about.\"");
+
+                            System.out.println("\nYou notice his screen.");
+                            System.out.println("A file is being deleted.");
+
+                            System.out.println("FILE NAME:");
+                            System.out.println("MAYA_SEN_FINAL_REPORT");
+
+                        } else {
+
+                            System.out.println("\nThe editor refuses to answer.");
+                            System.out.println("\"I already told you. Maya resigned.\"");
+
+                        }
+
+                    } else if (response == 2) {
+
+                        System.out.println("\n--------MAYA'S DESK--------");
+                        System.out.println("You find a notebook.");
+
+                        System.out.println("\nOne page contains:");
+                        System.out.println("\"The project doesn't predict criminals.\"");
+                        System.out.println("\"It predicts people.\"");
+
+                        System.out.println("\nAnother line is underlined:");
+                        System.out.println("\"The detective is the final test.\"");
+
+                    } else if (response == 3) {
+
+                        System.out.println("\n--------ARCHIVE TERMINAL--------");
+                        System.out.println("You search for MEMORY PROJECT.");
+
+                        System.out.println("RESULT FOUND.");
+                        System.out.println("\nPROJECT STARTED: 12 YEARS AGO");
+                        System.out.println("ORIGINAL INVESTIGATOR: UNKNOWN");
+                        System.out.println("CURRENT SUBJECT: DETECTIVE");
+
+                        System.out.println("\nYou try to open the subject file.");
+
+                        System.out.println("ACCESS DENIED.");
+
+                    } else if (response == 4) {
+
+                        office = false;
+
+                    } else {
+
+                        System.out.println("Invalid response.");
+
+                    }
+                }
+
+            } else if (response == 4) {
+
+                if (blueDoorEventDone) {
+
+                    System.out.println("\n--------BLUE DOOR--------");
+                    System.out.println("You already opened this door.");
+                    System.out.println("The evidence you found cannot be changed.");
+
+                } else {
+
+                    blueDoorEventDone = true;
+
+                    System.out.println("\n=======================================");
+                    System.out.println("              THE BLUE DOOR");
+                    System.out.println("=======================================");
+
+                    System.out.println("You find the blue door at the end of a quiet street.");
+                    System.out.println("There is no sign.");
+                    System.out.println("No security camera.");
+                    System.out.println("Just a small brass number: 17.");
+
+                    System.out.println("\nYou knock.");
+
+                    System.out.println("An elderly man opens the door.");
+
+                    System.out.println("MAN:");
+                    System.out.println("\"You finally came.\"");
+
+                    System.out.println("\nYou ask who he is.");
+
+                    System.out.println("MAN:");
+                    System.out.println("\"Someone who promised Maya I would tell you the truth.\"");
+
+                    System.out.println("\nHe gives you a box.");
+
+                    System.out.println("Inside are photographs.");
+
+                    System.out.println("Photographs of YOU.");
+
+                    System.out.println("At school.");
+                    System.out.println("At home.");
+                    System.out.println("At your first police interview.");
+                    System.out.println("Years before you became a detective.");
+
+                    System.out.println("\nYou turn over the oldest photograph.");
+
+                    System.out.println("Written on the back:");
+                    System.out.println("\"His father came here too.\"");
+
+                    System.out.println("\nThe man finally says:");
+                    System.out.println("\"Your father investigated the Memory Project.\"");
+
+                    System.out.println("\"He disappeared after he discovered what it was doing.\"");
+
+                    System.out.println("\nFor the first time tonight, the case is no longer about Maya.");
+
+                    System.out.println("It is about your family.");
+
+                    diary = diary + "\nMemory Project connected to my father.";
+
+                }
+
+            } else if (response == 5) {
+
+                if (strangerEventDone) {
+
+                    System.out.println("\n--------STRANGER--------");
+                    System.out.println("You already dealt with this person.");
+                    System.out.println("The event cannot be replayed.");
+
+                } else {
+
+                    strangerEventDone = true;
+
+                    System.out.println("\n=======================================");
+                    System.out.println("             THE STRANGER");
+                    System.out.println("=======================================");
+
+                    System.out.println("A person in a dark coat is watching you.");
+                    System.out.println("They start walking away.");
+
+                    System.out.println("\nIMPORTANT: THIS IS A ONE-TIME DECISION.");
+                    System.out.println("Once you choose an option, the choice is FINAL.");
+                    System.out.println("You cannot undo it.");
+
+                    System.out.println("\nWHAT WILL YOU DO?");
+                    System.out.println("1. Talk to them");
+                    System.out.println("2. Follow them");
+                    System.out.println("3. Stay where you are and observe");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        majorChoice = 1;
+
+                        System.out.println("\nYou call out to the stranger.");
+                        System.out.println("They stop.");
+
+                        System.out.println("STRANGER:");
+                        System.out.println("\"Maya was trying to protect you.\"");
+
+                        System.out.println("\nYou ask who they work for.");
+
+                        System.out.println("STRANGER:");
+                        System.out.println("\"Your father asked the same question.\"");
+
+                        System.out.println("\nThey leave a key on the pavement.");
+                        System.out.println("The key is marked: ARCHIVE 17.");
+
+                    } else if (response == 2) {
+
+                        majorChoice = 2;
+
+                        System.out.println("\nYou follow the stranger through two streets.");
+
+                        System.out.println("They enter an old records building.");
+                        System.out.println("Before the door closes, you see a sign:");
+                        System.out.println("ARCHIVE 17.");
+
+                        System.out.println("\nYou do not enter.");
+                        System.out.println("Instead, you record the location.");
+
+                    } else if (response == 3) {
+
+                        majorChoice = 3;
+
+                        System.out.println("\nYou stay still and watch.");
+
+                        System.out.println("The stranger checks their phone.");
+
+                        System.out.println("You hear them whisper:");
+                        System.out.println("\"He found the blue door.\"");
+
+                        System.out.println("\nThey walk away.");
+
+                    } else {
+
+                        strangerEventDone = false;
+                        System.out.println("Invalid response.");
+                        System.out.println("The one-time event has NOT been used.");
+                    }
+
+                    if (response >= 1 && response <= 3) {
+                        System.out.println("\nYour decision is FINAL.");
+                        System.out.println("This event cannot be replayed or changed.");
+                    }
+                }
+
+            } else if (response == 6) {
+
+                boolean diaryOpen = true;
+
+                while (diaryOpen) {
+
+                    System.out.println("\n=======================================");
+                    System.out.println("             DETECTIVE DIARY");
+                    System.out.println("=======================================");
+
+                    if (diary.length() == 0) {
+                        System.out.println("Your diary is empty.");
+                    } else {
+                        System.out.println("\n" + diary);
+                    }
+
+                    System.out.println("\n1. Add observation");
+                    System.out.println("2. Read again");
+                    System.out.println("3. Go back");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        sc.nextLine();
+                        System.out.println("Write your observation:");
+                        String note = sc.nextLine();
+
+                        if (diary.length() == 0) {
+                            diary = "1. " + note;
+                        } else {
+                            diary = diary + "\n" +
+                                    (diary.split("\n").length + 1) + ". " + note;
+                        }
+
+                        System.out.println("Observation added.");
+
+                    } else if (response == 2) {
+
+                        if (diary.length() == 0) {
+                            System.out.println("Your diary is empty.");
+                        } else {
+                            System.out.println("\n" + diary);
+                        }
+
+                    } else if (response == 3) {
+
+                        diaryOpen = false;
+
+                    } else {
+
+                        System.out.println("Invalid response.");
+
+                    }
+                }
+
+            } else if (response == 7) {
+
+                if (!blueDoorEventDone) {
+
+                    System.out.println("\nYou don't have enough evidence yet.");
+                    System.out.println("Maya told you to find the blue door.");
+                    System.out.println("Something important is waiting there.");
+
+                } else {
+
+                    System.out.println("\n=======================================");
+                    System.out.println("             THE FINAL ARCHIVE");
+                    System.out.println("=======================================");
+
+                    System.out.println("You reach Archive 17.");
+
+                    System.out.println("The building is almost empty.");
+                    System.out.println("A single room is still powered.");
+
+                    System.out.println("\nInside is a wall of screens.");
+
+                    System.out.println("Every screen shows a decision you made tonight.");
+
+                    System.out.println("Where you went.");
+                    System.out.println("Who you questioned.");
+                    System.out.println("Which clue you followed.");
+
+                    System.out.println("\nThen the largest screen turns on.");
+
+                    System.out.println("MAYA appears.");
+
+                    System.out.println("Maya:");
+                    System.out.println("\"If you're watching this, I failed to stop them from testing you.\"");
+
+                    System.out.println("\nShe explains the truth.");
+
+                    System.out.println("\"The Memory Project collected years of personal information.\"");
+                    System.out.println("\"It used that information to predict how people would react.\"");
+
+                    System.out.println("\n\"But your father discovered something.\"");
+                    System.out.println("\"The system could predict almost everyone...\"");
+                    System.out.println("\"except you.\"");
+
+                    System.out.println("\nA door opens behind you.");
+
+                    System.out.println("Maya is standing there.");
+
+                    mayaFound = true;
+
+                    System.out.println("\nMAYA:");
+                    System.out.println("\"I'm sorry.\"");
+                    System.out.println("\"I knew they would use me to bring you here.\"");
+
+                    System.out.println("\nYou notice something on the table.");
+
+                    System.out.println("A file labelled:");
+                    System.out.println("CASE 5 - DETECTIVE");
+
+                    System.out.println("Under it:");
+                    System.out.println("STATUS: FINAL DECISION REQUIRED");
+
+                    System.out.println("\nMaya points to the evidence room.");
+
+                    System.out.println("\"If you take the files, the truth becomes public.\"");
+                    System.out.println("\"If you stay and help me destroy the project, the evidence may disappear.\"");
+
+                    System.out.println("\nIMPORTANT: THIS IS THE FINAL ONE-TIME CHOICE.");
+                    System.out.println("Your decision cannot be undone.");
+
+                    System.out.println("\nWHAT WILL YOU DO?");
+                    System.out.println("1. Save the evidence");
+                    System.out.println("2. Stay with Maya and destroy the project");
+
+                    response = sc.nextInt();
+
+                    if (response == 1) {
+
+                        finalChoiceMade = true;
+                        evidenceSaved = true;
+
+                        System.out.println("\nYou choose the evidence.");
+
+                        System.out.println("You copy the files to an external drive.");
+                        System.out.println("Maya watches silently.");
+
+                        System.out.println("\nMAYA:");
+                        System.out.println("\"Then everyone will know.\"");
+
+                        System.out.println("\nYou upload the evidence to multiple public archives.");
+
+                        System.out.println("The Memory Project can no longer erase the records.");
+
+                        System.out.println("\nMaya looks at you.");
+
+                        System.out.println("\"Your father would have wanted that.\"");
+
+                    } else if (response == 2) {
+
+                        finalChoiceMade = true;
+                        evidenceSaved = false;
+
+                        System.out.println("\nYou choose Maya.");
+
+                        System.out.println("Together, you shut down the archive system.");
+
+                        System.out.println("One screen after another goes dark.");
+
+                        System.out.println("\nThe files disappear.");
+
+                        System.out.println("The truth is no longer preserved in the archive.");
+
+                        System.out.println("\nMaya looks at you.");
+
+                        System.out.println("\"Sometimes saving a person means losing the proof.\"");
+
+                    } else {
+
+                        System.out.println("Invalid response.");
+                        System.out.println("The final choice has NOT been used.");
+                    }
+
+                    if (finalChoiceMade) {
+
+                        System.out.println("\n=======================================");
+                        System.out.println("               CASE SOLVED");
+                        System.out.println("=======================================");
+
+                        System.out.println("\nThe clock reads:");
+
+                        long finalElapsed = (System.currentTimeMillis() - startTime) / 1000;
+                        long finalMinutes = startHour * 60L + startMinute + finalElapsed;
+                        int finalHour = (int)((finalMinutes / 60) % 24);
+                        int finalMinute = (int)(finalMinutes % 60);
+
+                        String finalPeriod = finalHour >= 12 ? "PM" : "AM";
+                        int finalDisplayHour = finalHour % 12;
+                        if (finalDisplayHour == 0) {
+                            finalDisplayHour = 12;
+                        }
+
+                        System.out.printf("%02d:%02d %s%n",
+                                finalDisplayHour, finalMinute, finalPeriod);
+
+                        System.out.println("\nYou solved the case.");
+                        System.out.println("But you did not simply find a culprit.");
+                        System.out.println("You discovered why the case was built around you.");
+
+                        if (majorChoice == 1) {
+                            System.out.println("\nThe stranger's warning helped you reach Archive 17.");
+                        } else if (majorChoice == 2) {
+                            System.out.println("\nFollowing the stranger revealed Archive 17.");
+                        } else if (majorChoice == 3) {
+                            System.out.println("\nObserving the stranger revealed that the project was watching you.");
+                        }
+
+                        if (evidenceSaved) {
+                            System.out.println("\nThe evidence survives.");
+                        } else {
+                            System.out.println("\nThe evidence is gone, but Maya is safe.");
+                        }
+
+                        System.out.println("\nThen Maya asks one final question:");
+                        System.out.println("\"Do you still want to know what happened to your father?\"");
+
+                        System.out.println("\nYou look at the empty archive.");
+
+                        System.out.println("Some cases end with an answer.");
+                        System.out.println("This one ends with another door.");
+
+                        System.out.println("\nCASE 5 COMPLETE.");
+                        System.out.println("You are now a Master Detective.");
+
+                        case5Solved = true;
+                    }
+                }
+
+            } else {
+
+                System.out.println("\nInvalid response.");
+
+            }
+        }
+    }
+
+}
+
+
+    </p>
+
+                      <p>
+                        import java.util.Random;
+import java.util.Scanner;
+
+class RockPaperScissor {
+    public static void main(String[] args) {
+        // ROCK PAPER SCISSOR GAME
+
+        // DECLARE VARIABLES
+        int input=0;
+        int responseNum;
+        String response;
+        String play="y";
+        int score=0;
+
+        Scanner sc=new Scanner(System.in);
+        Random r= new Random();
+
+        // WELCOME MESSAGE
+        System.out.println("***********************************");
+        System.out.println("WELCOME TO ROCK PAPER SCISSOR GAME!");
+        System.out.println("***********************************");
+
+        while(input!=4){
+            // TAKE INPUT FROM USER
+            System.out.println("1. Rock\n2. Paper\n3. Scissor\n4. Exit");
+            System.out.print("Enter your play (1,2,3): ");
+            input=sc.nextInt();
+
+            if (input == 4) {
+                break;
+            }
+
+            // VALIDATE USER INPUT
+            while(input!=1 && input!=2 && input!=3 && input!=4){
+                System.out.println("Invalid Input. Enter:\n1. Rock\n2. Paper\n3. Scissor\n4. Exit ");
+                System.out.print("Enter your play (1,2,3): ");
+                input=sc.nextInt();
+
+            }
+
+
+
+            // GENERATE A RANDOM RESPONSE
+            responseNum=r.nextInt(1,4);
+            switch(responseNum){
+                case 1 -> response="Rock";
+                case 2 -> response="Paper";
+                case 3 -> response="Scissor";
+
+            }
+
+            // LOGIC
+            if(input==1){
+                System.out.println("You Played: Rock");
+                if(responseNum==2){
+                    System.out.println("Computer played: Paper\n**********\nYou Lost!😒\n**********");
+                    if(score>20){
+                        score-=20;
+                    }
+                }
+                else if(responseNum==3){
+                    System.out.println("Computer Played: Scissor\n**********\nYou Won!🥳\n**********");
+                    score+=100;
+                }
+                else{
+                    System.out.println("Computer Played: Rock\n**********\nIts a tie!😐\n**********");
+                }
+            }
+            if(input==2){
+                System.out.println("You Played: Paper");
+                if(responseNum==3){
+                    System.out.println("Computer played: Scissor\n**********\nYou Lost!😒\n**********");
+                    if(score>20){
+                        score-=20;
+                    }
+
+                }
+                else if(responseNum==1){
+                    System.out.println("Computer Played: Rock\n**********\nYou Won!🥳\n**********");
+                    score+=100;
+                }
+                else{
+                    System.out.println("Computer Played: Paper\n**********\nIts a tie!😐\n**********");
+                }
+            }
+            if(input==3){
+                System.out.println("You Played: Scissor");
+                if(responseNum==1){
+                    System.out.println("Computer played: Rock\n**********\nYou Lost!😒\n**********");
+                    if(score>20){
+                        score-=20;
+                    }
+
+                }
+                else if(responseNum==2){
+                    System.out.println("Computer Played: Paper\n**********\nYou Won!🥳\n**********");
+                    score+=100;
+                }
+                else{
+                    System.out.println("Computer Played: Scissor\n**********\nIts a tie!😐\n**********");
+                }
+            }
+        }
+
+
+
+        // EXIT MESSAGE
+        System.out.println("\n\n******************");
+        System.out.println("Game Over\nFinal Score: "+score);
+        System.out.println("******************");
+    }
+}
+                      </p>
+  </body>
+</html>
